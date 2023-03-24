@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<main class="container mt-3">
+    <a href="/" class="mt-3 pb-5"><button type="button" class="btn btn-dark">Back</button></a>
+
+    <p class="mb-4"><b>Tours found: {{ analytics.tours_found }}</b></p>
+
+    <div class="row mt-5">
+    {% for num_of_tour, tour_info in all_tours.items() %}
+    <div class="col-4" style=" display: -webkit-flex; display: -ms-flexbox; display: flex; flex-wrap: wrap;">
+      <div class="card mb-4 ">
+        <div class="embed-responsive embed-responsive-16by9">  
+        <img src="{{ tour_info.picture }}" class="card-img-top img-fluid embed-responsive-item" alt="">
+        </div>
+        <div class="card-body d-flex justify-content-between flex-column">
+          <h2 class="h5 card-title d-flex justify-content-between">
+            <div>{{ tour_info.country[0] }}: {{ tour_info.title }} </div><div>{{ tour_info.stars }}★</div>
+          </h2>
+          <p class="card-text">{{ tour_info.description|truncate(120) }}</p>
+          <a href="https://www.booking.com/" class="btn btn-dark">More</a>
+  
+        </div>
+      </div>
+    </div> 
+    {% endfor %}   
+    </div>
+</main>
+{% endblock %}
